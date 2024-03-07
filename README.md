@@ -1,22 +1,34 @@
-# 大屏展示
+#  react-template
 
-- 枪钻主轴
+这个是一个React模板，主要包含以下技术/功能：
 
-# 相关命令
+### 环境
 
-- 运行
+```nodemon
+- node.js 18.17.0
+
+- pnpm 8.15.4
+```
+
+### 技术栈
+
++ React
++ Typescript
++ Ant Design UI
++ Axios
++ React-Router
++ hooks
++ commitList
++ eslint
++ prettier
++ Vite
+
+### use
+
 ```bash
 pnpm install
 
 pnpm dev
 ```
 
-- 语法检查
-```bash
-pnpm lint
-```
-- 打包
-
-```bash
-pnpm build
-```
+### 主要功能
