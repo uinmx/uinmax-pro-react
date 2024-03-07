@@ -13,7 +13,4 @@ export default defineConfig({
 
   plugins: [react()],
 })
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/uinmx/react-template.git
-  git push -u origin main
+
