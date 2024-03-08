@@ -2,11 +2,11 @@ import { message as AntdMessage } from 'antd'
 import axios from 'axios'
 
 /**
- * @name 接口异常,提示交互
+ * @description 接口异常,提示交互
  * @param error
  */
 export function httpErrorStatusHandle(error: any) {
-  if (axios.isCancel(error)) return console.error('请求的重复请求：' + error.message)
+  if (axios.isCancel(error)) return console.error('存在重复请求：' + error.message)
   let messageString = ''
   if (error && error.response) {
     switch (error.response.status) {
@@ -54,9 +54,12 @@ export function httpErrorStatusHandle(error: any) {
         break
     }
   }
-  if (error.message.includes('timeout')) messageString = '网络请求超时！'
+  if (error.message.includes('timeout')) messageString = '网络请求超时！请稍后再试'
   if (error.message.includes('Network')) {
+    // 断网处理: 跳转到断网页面
+    if (!window.navigator.onLine) window.location.hash = '/500'
     messageString = window.navigator.onLine ? '服务端异常！' : '您断网了！'
   }
+
   AntdMessage.error(messageString)
 }

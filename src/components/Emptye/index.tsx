@@ -1,6 +1,6 @@
 import { Empty } from 'antd'
 
-function MTLEmpty() {
+function AEmpty() {
   return (
     <>
       <Empty
@@ -14,4 +14,4 @@ function MTLEmpty() {
   )
 }
 
-export default MTLEmpty
+export default AEmpty
