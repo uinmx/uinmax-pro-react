@@ -17,9 +17,11 @@ components/*/*.jsx
 .editorconfig
 .eslintignore
 .history
+.npmrc
 
 *.sh
 *.snap
 **/*.yml
+**/*.yaml
 **/*.png
 **/*.svg
