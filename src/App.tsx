@@ -1,4 +1,4 @@
-import { MTLEmpty } from './components'
+import { MTLEmpty } from '@/components'
 
 function App() {
   return (
