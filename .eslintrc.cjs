@@ -11,6 +11,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh', 'prettier'],
   rules: {
+    '@typescript-eslint/no-explicit-any': 'off',
     'prettier/prettier': 'error',
     'arrow-body-style': 'off',
     'prefer-arrow-callback': 'off',
