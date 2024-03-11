@@ -12,17 +12,9 @@
 
 ### 技术栈
 
-- React
-- Typescript
-- axios
-- zustand
-- react-router
-- Ant Design UI
-- hooks
-- commitList
-- eslint
-- prettier
-- vite
+- React 18.2.x 、 Typescript 5.x 、 Vite 5.x
+- react-router 6.x 、 zustand 4.x 、 Ant Design UI 5.x
+- hooks 、commitList 、eslint 、prettier
 
 ### use
 
