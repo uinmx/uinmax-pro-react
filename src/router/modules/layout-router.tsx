@@ -8,15 +8,18 @@ const About = LazyLoad(() => import('@/views/about'))
 
 const AboutRouter: Array<RouteObject | any> = [
   {
-    path: '/',
+    path: '/layout',
+    title: 'layout',
     element: <DefaultLayout />,
     children: [
       {
         path: 'home',
+        title: '首页',
         element: <Home />
       },
       {
         path: 'about',
+        title: '关于我们',
         element: <About />
       }
     ]

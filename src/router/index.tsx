@@ -5,6 +5,25 @@ import LazyLoad from '@/utils/lazyLoad'
 
 const Welcome = LazyLoad(() => import('@/views/welcome'))
 
+export type CustomTypes = {
+  /**
+   * 路由名称
+   */
+  title: string
+  /**
+   * 路由路径
+   */
+  path: string
+  /**
+   * 路由组件
+   */
+  element: JSX.Element
+  /**
+   * 路由子路由
+   */
+  children?: RouteObject[]
+}
+
 /**
  * 导入所有路由模块
  */
@@ -30,9 +49,10 @@ const moduleRoutes: RouteObject[] = await Promise.all(
  * @param / 默认路由
  * @param * 重定向
  */
-const RootRouter: RouteObject[] = [
+export const RootRouter: Array<RouteObject | CustomTypes> = [
   {
     path: '/',
+    title: 'Welcome',
     element: <Welcome />
   },
   ...moduleRoutes.flat(),
