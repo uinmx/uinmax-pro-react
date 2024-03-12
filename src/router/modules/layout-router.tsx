@@ -9,18 +9,30 @@ const About = LazyLoad(() => import('@/views/about'))
 const AboutRouter: Array<RouteObject | any> = [
   {
     path: '/layout',
-    title: 'layout',
     element: <DefaultLayout />,
+    meta: {
+      title: 'layout',
+      icon: 'el-icon-s-home',
+      type: 'group'
+    },
     children: [
       {
         path: 'home',
-        title: '首页',
-        element: <Home />
+        element: <Home />,
+        meta: {
+          title: '首页',
+          key: 'home',
+          icon: 'el-icon-s-home'
+        }
       },
       {
         path: 'about',
-        title: '关于我们',
-        element: <About />
+        element: <About />,
+        meta: {
+          title: '关于我们',
+          key: 'about',
+          icon: 'el-icon-s-home'
+        }
       }
     ]
   }

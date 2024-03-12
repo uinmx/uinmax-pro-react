@@ -1,3 +1,5 @@
+import React from 'react'
+import type { MenuProps } from 'antd'
 import { Navigate, useRoutes } from 'react-router-dom'
 import type { RouteObject } from 'react-router-dom'
 
@@ -5,24 +7,16 @@ import LazyLoad from '@/utils/lazyLoad'
 
 const Welcome = LazyLoad(() => import('@/views/welcome'))
 
-export type CustomTypes = {
-  /**
-   * 路由名称
-   */
-  title: string
-  /**
-   * 路由路径
-   */
-  path: string
-  /**
-   * 路由组件
-   */
-  element: JSX.Element
-  /**
-   * 路由子路由
-   */
-  children?: RouteObject[]
-}
+export type CustomRouterParamsTypes = {
+  meta: {
+    title?: React.ReactNode
+    key?: React.Key | null
+    icon?: React.ReactNode
+    children?: CustomRouterParamsTypes[]
+    type?: 'group'
+  }
+} & MenuProps &
+  RouteObject
 
 /**
  * 导入所有路由模块
@@ -49,11 +43,16 @@ const moduleRoutes: RouteObject[] = await Promise.all(
  * @param / 默认路由
  * @param * 重定向
  */
-export const RootRouter: Array<RouteObject | CustomTypes> = [
+export const RootRouter: Array<RouteObject | CustomRouterParamsTypes> = [
   {
     path: '/',
-    title: 'Welcome',
-    element: <Welcome />
+    element: <Welcome />,
+    meta: {
+      title: '欢迎',
+      key: 'welcome',
+      icon: 'home',
+      type: 'group'
+    }
   },
   ...moduleRoutes.flat(),
   {
