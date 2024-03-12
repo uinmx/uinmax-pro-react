@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { Button, Space } from 'antd'
 
 import { listDemo } from '@/api/demo'
-import { AEmpty } from '@/components'
+import { AEmpty, Loading } from '@/components'
 import { useGlobalStore } from '@/store'
 
 const Home = () => {
@@ -20,8 +20,6 @@ const Home = () => {
 
   return (
     <div>
-      <AEmpty />
-
       <h3>{count}</h3>
       <Space>
         <Button onClick={() => increment(1)} type="primary">
@@ -32,13 +30,16 @@ const Home = () => {
         </Button>
       </Space>
 
-      {list && (
-        <div>
-          {list.slice(0, 3).map((item: any) => (
-            <h3 key={item.id}>{item.title}</h3>
-          ))}
-        </div>
-      )}
+      <Suspense fallback={<Loading fullscreen={false} />}>
+        {list && (
+          <div>
+            {list.slice(0, 3).map((item: any) => (
+              <h3 key={item.id}>{item.title}</h3>
+            ))}
+          </div>
+        )}
+        {!list && <AEmpty />}
+      </Suspense>
     </div>
   )
 }

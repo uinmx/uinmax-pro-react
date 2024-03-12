@@ -6,7 +6,7 @@ function AEmpty() {
       <Empty
         description={
           <span>
-            暂无数据 <a href="#API">...</a>
+            暂无数据 <a href="#">...</a>
           </span>
         }
       />

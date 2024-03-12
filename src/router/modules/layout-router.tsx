@@ -17,7 +17,7 @@ const AboutRouter: Array<RouteObject | any> = [
     },
     children: [
       {
-        path: 'home',
+        path: '',
         element: <Home />,
         meta: {
           title: '首页',

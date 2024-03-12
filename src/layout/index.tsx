@@ -89,7 +89,7 @@ function DefaultLayout() {
 
   return (
     <Layout style={{ height: '100vh' }}>
-      <Header style={{ display: 'flex', alignItems: 'center' }}>
+      <Header className="layout-header">
         <div className="demo-logo">
           <Button onClick={() => navigate('/')}>Logo</Button>
         </div>
