@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import * as AntdIcons from '@ant-design/icons'
-import { Button, Layout, Menu } from 'antd'
+import { Avatar, Layout, Menu } from 'antd'
 import type { MenuProps } from 'antd'
-import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 import './index.less'
 
@@ -74,6 +74,9 @@ function DefaultLayout() {
   const { pathname } = useLocation()
   const [menuItems, setMenuItems] = useState<MenuItem[]>([])
 
+  const scrollRef = useRef<any>(null)
+  const [showNavBar, setShowNavBar] = useState(true)
+
   async function getFlattenRoutes() {
     const { RootRouter: routes } = await import('@/router')
     setMenuItems(deepLoopFloat(routes))
@@ -81,7 +84,22 @@ function DefaultLayout() {
 
   useEffect(() => {
     getFlattenRoutes()
-  }, [pathname])
+
+    let inObserver: IntersectionObserver
+    if (scrollRef.current) {
+      inObserver = new IntersectionObserver((entries) => {
+        setShowNavBar(entries[0].isIntersecting)
+      })
+      inObserver.observe(scrollRef.current)
+    }
+
+    return () => {
+      if (scrollRef.current && inObserver) {
+        inObserver.unobserve(scrollRef.current)
+        inObserver.disconnect()
+      }
+    }
+  }, [pathname, scrollRef.current])
 
   const onClickSubMenu = ({ key }: any) => {
     navigate(`${key}`)
@@ -89,9 +107,18 @@ function DefaultLayout() {
 
   return (
     <Layout style={{ height: '100vh' }}>
-      <Header className="layout-header">
-        <div className="demo-logo">
-          <Button onClick={() => navigate('/')}>Logo</Button>
+      <Header className={!showNavBar ? 'fixed-header' : 'layout-header'}>
+        <div className="layout-header-logo">
+          <NavLink to="/">
+            <Avatar
+              src={
+                <img
+                  src={'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg'}
+                  alt="Logo"
+                />
+              }
+            />
+          </NavLink>
         </div>
         <Menu
           // theme="dark"
@@ -101,6 +128,7 @@ function DefaultLayout() {
           style={{ flex: 1, minWidth: 0 }}
         />
       </Header>
+      <div ref={scrollRef} className="top-flag" />
       <Content style={{ padding: '20px' }}>
         <Outlet />
       </Content>

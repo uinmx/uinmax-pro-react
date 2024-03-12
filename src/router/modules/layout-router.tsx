@@ -12,7 +12,7 @@ const AboutRouter: Array<RouteObject | any> = [
     element: <DefaultLayout />,
     meta: {
       title: 'layout',
-      icon: 'el-icon-s-home',
+      icon: 'BarsOutlined',
       type: 'group'
     },
     children: [
@@ -22,7 +22,7 @@ const AboutRouter: Array<RouteObject | any> = [
         meta: {
           title: '首页',
           key: 'home',
-          icon: 'el-icon-s-home'
+          icon: 'HomeOutlined'
         }
       },
       {
@@ -31,7 +31,7 @@ const AboutRouter: Array<RouteObject | any> = [
         meta: {
           title: '关于我们',
           key: 'about',
-          icon: 'el-icon-s-home'
+          icon: 'BlockOutlined'
         }
       }
     ]

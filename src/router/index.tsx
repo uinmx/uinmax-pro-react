@@ -18,6 +18,10 @@ export type CustomRouterParamsTypes = {
 } & MenuProps &
   RouteObject
 
+interface ModuleWithDefault {
+  default: RouteObject
+}
+
 /**
  * 导入所有路由模块
  */
@@ -27,9 +31,6 @@ const moduleRouterFiles = import.meta.glob('./modules/*.tsx')
  * DynamicRouter 动态路由
  * @description 模块化配置合并
  */
-interface ModuleWithDefault {
-  default: RouteObject
-}
 const moduleRoutes: RouteObject[] = await Promise.all(
   Object.values(moduleRouterFiles).map(async (module): Promise<RouteObject> => {
     const moduleFile = (await module()) as ModuleWithDefault
@@ -50,7 +51,7 @@ export const RootRouter: Array<RouteObject | CustomRouterParamsTypes> = [
     meta: {
       title: '欢迎',
       key: 'welcome',
-      icon: 'home',
+      icon: 'SmileOutlined',
       type: 'group'
     }
   },
