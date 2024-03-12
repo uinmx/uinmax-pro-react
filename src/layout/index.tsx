@@ -1,12 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import * as AntdIcons from '@ant-design/icons'
-import { Avatar, Layout, Menu } from 'antd'
+import { Layout } from 'antd'
 import type { MenuProps } from 'antd'
-import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 
 import './index.less'
 
-const { Header, Content, Footer } = Layout
+import { HeaderBar } from './components'
+
+const { Content, Footer } = Layout
 
 /**
  * 菜单图标获取
@@ -24,7 +26,7 @@ const getIconComp = (name: string) => {
  * 渲染菜单类型
  * antd menu
  */
-type MenuItem = Required<MenuProps>['items'][number]
+export type MenuItem = Required<MenuProps>['items'][number]
 const getMenuItem = (
   label: React.ReactNode,
   key?: React.Key | null,
@@ -70,65 +72,9 @@ export const deepLoopFloat = (menuList: any[], newArr: MenuItem[] = []) => {
  * -- 菜单权限配置
  */
 function DefaultLayout() {
-  const navigate = useNavigate()
-  const { pathname } = useLocation()
-  const [menuItems, setMenuItems] = useState<MenuItem[]>([])
-
-  const scrollRef = useRef<any>(null)
-  const [showNavBar, setShowNavBar] = useState(true)
-
-  async function getFlattenRoutes() {
-    const { RootRouter: routes } = await import('@/router')
-    setMenuItems(deepLoopFloat(routes))
-  }
-
-  useEffect(() => {
-    getFlattenRoutes()
-
-    let inObserver: IntersectionObserver
-    if (scrollRef.current) {
-      inObserver = new IntersectionObserver((entries) => {
-        setShowNavBar(entries[0].isIntersecting)
-      })
-      inObserver.observe(scrollRef.current)
-    }
-
-    return () => {
-      if (scrollRef.current && inObserver) {
-        inObserver.unobserve(scrollRef.current)
-        inObserver.disconnect()
-      }
-    }
-  }, [pathname, scrollRef.current])
-
-  const onClickSubMenu = ({ key }: any) => {
-    navigate(`${key}`)
-  }
-
   return (
     <Layout style={{ height: '100vh' }}>
-      <Header className={!showNavBar ? 'fixed-header' : 'layout-header'}>
-        <div className="layout-header-logo">
-          <NavLink to="/">
-            <Avatar
-              src={
-                <img
-                  src={'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg'}
-                  alt="Logo"
-                />
-              }
-            />
-          </NavLink>
-        </div>
-        <Menu
-          // theme="dark"
-          mode="horizontal"
-          items={menuItems}
-          onClick={onClickSubMenu}
-          style={{ flex: 1, minWidth: 0 }}
-        />
-      </Header>
-      <div ref={scrollRef} className="top-flag" />
+      <HeaderBar />
       <Content style={{ padding: '20px' }}>
         <Outlet />
       </Content>
