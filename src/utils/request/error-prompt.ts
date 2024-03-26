@@ -6,10 +6,22 @@ import axios from 'axios'
  * @param error
  */
 export function httpErrorStatusHandle(error: any) {
-  if (axios.isCancel(error)) return console.error('存在重复请求：' + error.message)
+  if (!error) return
+  const { message, response } = error
+
   let messageString = ''
-  if (error && error.response) {
-    switch (error.response.status) {
+  if (axios.isCancel(error)) return console.error('存在重复请求：' + message)
+
+  if (message.includes('timeout')) messageString = '网络请求超时！请稍后再试'
+
+  // 断网处理: 跳转到断网页面
+  if (message.includes('Network')) {
+    if (!window.navigator.onLine) window.location.hash = '/500'
+    messageString = window.navigator.onLine ? '服务端异常！' : '您断网了！'
+  }
+
+  if (response && response.status) {
+    switch (response.status) {
       case 302:
         messageString = '接口重定向了！'
         break
@@ -23,7 +35,7 @@ export function httpErrorStatusHandle(error: any) {
         messageString = '没有权限操作！'
         break
       case 404:
-        messageString = `请求地址出错: ${error.response.config.url}`
+        messageString = `请求地址出错: ${response.config.url}`
         break
       case 408:
         messageString = '请求超时！'
@@ -53,12 +65,6 @@ export function httpErrorStatusHandle(error: any) {
         messageString = '异常问题，请联系管理员！'
         break
     }
-  }
-  if (error.message.includes('timeout')) messageString = '网络请求超时！请稍后再试'
-  if (error.message.includes('Network')) {
-    // 断网处理: 跳转到断网页面
-    if (!window.navigator.onLine) window.location.hash = '/500'
-    messageString = window.navigator.onLine ? '服务端异常！' : '您断网了！'
   }
 
   AntdMessage.error(messageString)

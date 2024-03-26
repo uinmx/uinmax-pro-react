@@ -11,23 +11,20 @@ import { getToken } from '@/utils/auth'
  * 自定义配置
  * @name loading 是否开启loading层效果，默认为false
  * @name repeat_request_cancel 是否开启取消重复请求，默认为 true
- * @name reduct_data_format 是否开启简洁的数据结构响应，默认为true
  * @name error_message_show 是否开启接口错误信息展示，默认为true
- * @name code_message_show 是否开启code不为0时的信息提示，默认为false
  */
 interface CustomOptions {
   loading: boolean
   repeat_request_cancel: boolean
-  reduct_data_format: boolean
   error_message_show: boolean
-  code_message_show: boolean
 }
 
 /**
  * 初始化配置
  */
+const baseURL = import.meta.env.VITE_APP_BASE_API
 const initAxiosConfig = {
-  baseURL: '',
+  baseURL: baseURL,
   timeout: 10000,
   headers: { 'Content-Type': 'application/json' }
 }
@@ -47,9 +44,7 @@ export function RequestHttp(
     {
       loading: false,
       repeat_request_cancel: true,
-      reduct_data_format: true,
-      error_message_show: true,
-      code_message_show: false
+      error_message_show: true
     },
     customOptions
   )
@@ -57,14 +52,15 @@ export function RequestHttp(
   // 请求拦截
   service.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
-      removePending(config)
+      // * 将当前请求添加到 pending 中
       custom_options.repeat_request_cancel && addPending(config)
-      if (custom_options.loading) {
-        openFullScreenLoading()
-      }
+      custom_options.loading && openFullScreenLoading()
+
+      // * Token处理逻辑
       if (getToken() && typeof window !== 'undefined') {
         config.headers.Authorization = getToken()
       }
+
       return config
     },
     (error) => {
@@ -74,18 +70,28 @@ export function RequestHttp(
 
   // 响应拦截
   service.interceptors.response.use(
-    (response) => {
-      removePending(response.config)
+    (res) => {
+      const { data, config } = res
+
+      //* 在请求结束后，移除本次请求(关闭loading)
+      removePending(config)
       custom_options.loading && closeFullScreenLoading()
-      if (custom_options.code_message_show && response.data && response.data.code !== 0) {
-        AntdMessage.error(response.data.message)
-        return Promise.reject(response.data)
+
+      //* 全局错误信息拦截
+      if (data.code && data.code !== 200) {
+        AntdMessage.error(data.message)
+        return Promise.reject(data)
       }
-      return custom_options.reduct_data_format ? response.data : response
+
+      return data
     },
     (error: AxiosError) => {
-      error.config && removePending(error.config)
+      const { config } = error
+
+      config && removePending(config)
       custom_options.loading && closeFullScreenLoading()
+
+      //* 错误处理提示
       custom_options.error_message_show && httpErrorStatusHandle(error)
       return Promise.reject(error)
     }
