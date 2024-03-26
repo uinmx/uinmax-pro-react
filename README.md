@@ -1,4 +1,5 @@
 # uinmax-pro-react
+
 完整版
 
 ### 环境
@@ -44,3 +45,19 @@ pnpm format:check
 # prettier 修复
 pnpm format:code
 ```
+
+# 贡献规范
+
+| 标记     | 说明                                                 |
+| -------- | ---------------------------------------------------- |
+| feat     | 新功能添加                                           |
+| fix      | 修复 bug                                             |
+| docs     | 文档（documentation）相关的修改。                    |
+| style    | 代码风格、格式化等方面的修改，不涉及代码含义的改动。 |
+| refactor | 重构                                                 |
+| perf     | 优化性能                                             |
+| test     | 增加或修改测试代码。                                 |
+| chore    | 构建工具、依赖项、辅助工具等的变动。                 |
+| ci       | CI/CD 相关的修改。                                   |
+| revert   | 撤销之前的提交。                                     |
+| merge    | 合并分支时的提交信息。                               |
