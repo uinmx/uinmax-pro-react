@@ -1,7 +1,7 @@
 import React from 'react'
 import type { MenuProps } from 'antd'
-import { Navigate, useRoutes } from 'react-router-dom'
 import type { RouteObject } from 'react-router-dom'
+import { Navigate, useRoutes } from 'react-router-dom'
 
 import LazyLoad from '@/utils/lazyLoad'
 
@@ -18,25 +18,18 @@ export type CustomRouterParamsTypes = {
 } & MenuProps &
   RouteObject
 
-interface ModuleWithDefault {
-  default: RouteObject
-}
-
 /**
  * 导入所有路由模块
  */
-const moduleRouterFiles = import.meta.glob('./modules/*.tsx')
+const moduleRouterFiles = import.meta.glob('./modules/*.tsx', { eager: true })
 
 /**
  * DynamicRouter 动态路由
  * @description 模块化配置合并
  */
-const moduleRoutes: RouteObject[] = await Promise.all(
-  Object.values(moduleRouterFiles).map(async (module): Promise<RouteObject> => {
-    const moduleFile = (await module()) as ModuleWithDefault
-    return moduleFile.default
-  })
-)
+const moduleRoutes: RouteObject[] = Object.values(moduleRouterFiles)
+  .map((module: any) => module.default)
+  .flat()
 
 /**
  * RootRouter 公共路由
@@ -55,7 +48,7 @@ export const RootRouter: Array<RouteObject | CustomRouterParamsTypes> = [
       type: 'group'
     }
   },
-  ...moduleRoutes.flat(),
+  ...moduleRoutes,
   {
     path: '*',
     element: <Navigate to="/404" />
