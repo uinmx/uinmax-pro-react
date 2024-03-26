@@ -1,6 +1,8 @@
 # react-template
 
-这个是一个React模板，主要包含以下技术/功能：
+这是一个简易版本的React开发模板。<br> 支持router6动态路由、zustand状态管理、axios请求封装、antd 5 Ui组件库、commitlint规范、prettier规范、eslint规范、pnpm包管理器
+
+![img.png](img.png)
 
 ### 环境
 
