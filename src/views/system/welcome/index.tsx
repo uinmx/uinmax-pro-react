@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
-
-import ReactSVG from '@/assets/react.svg'
+import ReactSVG from 'src/assets/svg/react.svg'
 
 function Welcome() {
   return (
