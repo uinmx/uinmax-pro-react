@@ -1,4 +1,4 @@
-import LazyLoad from '@/utils/lazyLoad'
+import LazyLoad from '@/router/_utils/lazyLoad'
 
 const Error403 = LazyLoad(() => import('@/layout/components/NoMatch'))
 const Error404 = LazyLoad(() => import('@/layout/components/NoMatch'))

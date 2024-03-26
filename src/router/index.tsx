@@ -1,22 +1,10 @@
-import React from 'react'
-import type { MenuProps } from 'antd'
 import type { RouteObject } from 'react-router-dom'
 import { Navigate, useRoutes } from 'react-router-dom'
 
-import LazyLoad from '@/utils/lazyLoad'
+import { CustomRouterParamsTypes } from './typings'
+import LazyLoad from '@/router/_utils/lazyLoad'
 
 const Welcome = LazyLoad(() => import('@/views/welcome'))
-
-export type CustomRouterParamsTypes = {
-  meta: {
-    title?: React.ReactNode
-    key?: React.Key | null
-    icon?: React.ReactNode
-    children?: CustomRouterParamsTypes[]
-    type?: 'group'
-  }
-} & MenuProps &
-  RouteObject
 
 /**
  * 导入所有路由模块
