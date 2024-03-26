@@ -75,7 +75,7 @@ function DefaultLayout() {
   return (
     <Layout style={{ height: '100vh' }}>
       <HeaderBar />
-      <Content style={{ padding: '20px' }}>
+      <Content className="layout-content-body">
         <Outlet />
       </Content>
       <Footer style={{ textAlign: 'center' }}>

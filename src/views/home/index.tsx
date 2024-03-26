@@ -1,9 +1,11 @@
 import { Suspense, useEffect, useState } from 'react'
-import { Button, Space } from 'antd'
+import { Button, Space, Typography } from 'antd'
 
 import { listDemo } from '@/api/demo'
 import { AEmpty, Loading } from '@/components'
 import { useGlobalStore } from '@/store'
+
+const { Text } = Typography
 
 const Home = () => {
   const { count, increment, decrement } = useGlobalStore()
@@ -33,11 +35,16 @@ const Home = () => {
       <Suspense fallback={<Loading fullscreen={false} />}>
         {list && (
           <div>
-            {list.slice(0, 3).map((item: any) => (
-              <h3 key={item.id}>{item.title}</h3>
-            ))}
+            <Space direction="vertical">
+              {list.slice(0, 3).map((item: any) => (
+                <Text italic key={item.id}>
+                  {item.title}
+                </Text>
+              ))}
+            </Space>
           </div>
         )}
+
         {!list && <AEmpty />}
       </Suspense>
     </div>
