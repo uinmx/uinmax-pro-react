@@ -1,0 +1,54 @@
+/**
+ * 常用复用样式
+ * flex 布局
+ * text 文本
+ * img  图片
+ */
+.flex{
+  display: flex;
+}
+
+.flex-column{
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-center{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.flex-between{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/*-------------------text----------------*/
+.text-center{
+  text-align: center;
+}
+
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/*-------------------img----------------*/
+.img-cover{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bg-cover{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.bg-container{
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
