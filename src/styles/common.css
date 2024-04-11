@@ -4,29 +4,34 @@
  * text 文本
  * img  图片
  */
-.flex{
+.flex {
   display: flex;
 }
 
-.flex-column{
+.flex-column {
   display: flex;
   flex-direction: column;
 }
+.flex-column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-.flex-center{
+.flex-center {
   display: flex;
   justify-content: center;
   align-content: center;
 }
 
-.flex-between{
+.flex-between {
   display: flex;
   justify-content: space-between;
 }
 
-
 /*-------------------text----------------*/
-.text-center{
+.text-center {
   text-align: center;
 }
 
@@ -37,17 +42,17 @@
 }
 
 /*-------------------img----------------*/
-.img-cover{
+.img-cover {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.bg-cover{
+.bg-cover {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
-.bg-container{
+.bg-container {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

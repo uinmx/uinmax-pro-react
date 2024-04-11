@@ -1,8 +1,16 @@
-:root{
+:root {
   --primary-color: #0960bd;
   --success-color: #55d187;
   --error-color: #ed6f6f;
   --warning-color: #efbd47;
 
+  /*----------theme-------------*/
+  --theme-green: #16a34a;
 
+  /*----------z-index-------------*/
+  --z-index-base: 0;
+  --z-index-top: 100;
+  --z-index-popup: 400;
+  --z-index-loading: 500;
+  --z-index-max: 1000;
 }

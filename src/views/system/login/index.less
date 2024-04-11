@@ -1,4 +1,4 @@
-.login-container{
+.login-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,42 +7,58 @@
   min-width: 100vw;
   position: relative;
 
-  .login-nav{
-    //height: 60px;
+  .login-nav {
     position: absolute;
     top: 20px;
     right: 20px;
+    z-index: var(--z-index-max);
   }
 
-  .login-form{
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .login-footer {
+    //position: absolute;
+    left: 0;
+    right: 0;
+    //bottom: 0;
+    height: 40px;
+  }
+}
 
-    .body{
-      width: 460px;
-      padding: 32px;
-      border-radius: 8px;
-      background-color: white;
-      border: 1px solid rgba(0, 0, 0, .12);
-      box-shadow: 0 0 12px rgba(0, 0, 0, .12);
+.login-content {
+  flex: 1;
+  width: 100%;
+  display: flex;
 
-      .login-type{
-        display: flex;
-        justify-content: space-evenly;
-        margin-bottom: 20px;
+  .login-preview {
+    flex: 2;
+    position: relative;
+    background-color: aliceblue;
 
-        span{
-          flex: 1;
-          line-height: 32px;
+    .sys-logo {
+      align-items: center;
+      display: inline-flex;
+      position: fixed;
+      top: 24px;
+      left: 22px;
+      z-index: 1;
+      gap: 10px;
 
-        }
+      span {
+        font-size: 24px;
+        font-weight: 600;
       }
+    }
+    .sys-title {
+    }
+
+    .sys-banner {
+      opacity: 0.86;
+      width: 520px;
+      height: 390px;
     }
   }
 
-  .login-footer{
-    height: 60px;
+  .login-form {
+    flex: 1;
+    background-color: white;
   }
 }

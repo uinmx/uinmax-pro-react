@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom'
-import ReactSVG from 'src/assets/svg/react.svg'
+
+import ReactSVG from '@/assets/svg/react.svg'
+import { SwitchDark } from '@/components'
 
 function Welcome() {
   return (
     <div style={styles.welcomeBox}>
       <div style={styles.logoBox}>
+        <SwitchDark />
         <a href="https://vitejs.dev" target="_blank">
           <img src="/vite.svg" style={styles.logo} className="logo" alt="Vite logo" />
         </a>

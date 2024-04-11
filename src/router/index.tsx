@@ -4,7 +4,8 @@ import { Navigate, useRoutes } from 'react-router-dom'
 import { CustomRouterParamsTypes } from './typings'
 import LazyLoad from '@/router/_utils/lazyLoad'
 
-const Welcome = LazyLoad(() => import('@/views/system/welcome'))
+// const Welcome = LazyLoad(() => import('@/views/system/welcome'))
+const Login = LazyLoad(() => import('@/views/system/login'))
 
 /**
  * 导入所有路由模块
@@ -28,7 +29,8 @@ const moduleRoutes: RouteObject[] = Object.values(moduleRouterFiles)
 export const RootRouter: Array<RouteObject | CustomRouterParamsTypes> = [
   {
     path: '/',
-    element: <Welcome />,
+    // element: <Welcome />,
+    element: <Login />,
     meta: {
       title: '欢迎',
       key: 'welcome',
