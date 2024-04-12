@@ -5,15 +5,28 @@ import { SwitchDark } from '@/components'
 
 import './index.less'
 
+import { useTranslation } from 'react-i18next'
+
 import BannerURL from '@/assets/imgages/bg-anim-security.gif'
 import LogoURL from '@/assets/svg/react.svg'
 
 function LoginPage() {
+  const { t, i18n } = useTranslation()
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng)
+    console.log('changeLanguage@', t('sys.login.title'))
+  }
+
   return (
     <div className="login-container">
       <div className="login-nav">
         <SwitchDark />
       </div>
+
+      <h2>{t('sys.login.title')}</h2>
+      <button onClick={() => changeLanguage('en')}>English</button>
+      <button onClick={() => changeLanguage('zh')}>中文</button>
 
       <Row className="login-content">
         <Col xs={0} md={16} className="login-preview flex-column-center">
