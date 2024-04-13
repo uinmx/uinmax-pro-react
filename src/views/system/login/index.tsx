@@ -8,7 +8,7 @@ import './index.less'
 import { useTranslation } from 'react-i18next'
 
 import BannerURL from '@/assets/imgages/bg-anim-security.gif'
-import LogoURL from '@/assets/svg/react.svg'
+import LogoURL from '@/assets/svg/uimx-logo.svg'
 
 function LoginPage() {
   const { t, i18n } = useTranslation()
@@ -31,7 +31,7 @@ function LoginPage() {
       <Row className="login-content">
         <Col xs={0} md={16} className="login-preview flex-column-center">
           <div className="sys-logo">
-            <img src={LogoURL} alt={'logo'} width={32} height={32} />
+            <img src={LogoURL} alt={'logo'} width={48} height={48} />
             <span>UinMax Pro</span>
           </div>
           <img src={BannerURL} className="sys-banner bg-container" alt="banner" />
