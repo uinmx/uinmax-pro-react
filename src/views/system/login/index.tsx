@@ -31,8 +31,8 @@ function LoginPage() {
       <Row className="login-content">
         <Col xs={0} md={16} className="login-preview flex-column-center">
           <div className="sys-logo">
-            <img src={LogoURL} alt={'logo'} width={48} height={48} />
-            <span>UinMax Pro</span>
+            <img src={LogoURL} alt={'logo'} width={42} height={42} />
+            <span>{t('sys.login.systemName')}</span>
           </div>
           <img src={BannerURL} className="sys-banner bg-container" alt="banner" />
           <div className="sys-title">

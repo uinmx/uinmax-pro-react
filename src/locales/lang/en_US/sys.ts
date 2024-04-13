@@ -4,6 +4,7 @@ export default {
     zh: { nativeName: '中文' }
   },
   login: {
+    systemName: 'Uimx Pro',
     title: 'Sign in',
     username: 'username',
     password: 'password',
