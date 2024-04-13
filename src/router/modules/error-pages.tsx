@@ -1,8 +1,8 @@
 import LazyLoad from '@/router/_utils/lazyLoad'
 
-const Error403 = LazyLoad(() => import('@/views/system/exception/Erroe403'))
-const Error404 = LazyLoad(() => import('@/views/system/exception/Erroe404'))
-const Error500 = LazyLoad(() => import('@/views/system/exception/Erroe500'))
+const Error403 = LazyLoad(() => import('@/views/system/exception/Error403'))
+const Error404 = LazyLoad(() => import('@/views/system/exception/Error404'))
+const Error500 = LazyLoad(() => import('@/views/system/exception/Error500'))
 
 // 错误页面模块
 const errorRouter: Array<any> = [

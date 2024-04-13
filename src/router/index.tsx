@@ -28,8 +28,7 @@ const moduleRoutes: RouteObject[] = Object.values(moduleRouterFiles)
  */
 export const RootRouter: Array<RouteObject | CustomRouterParamsTypes> = [
   {
-    path: '/',
-    // element: <Welcome />,
+    path: '/login',
     element: <Login />,
     meta: {
       title: '欢迎',

@@ -8,7 +8,7 @@ const About = LazyLoad(() => import('@/views/system/about'))
 
 const AboutRouter: Array<RouteObject | any> = [
   {
-    path: '/layout',
+    path: '/',
     element: <DefaultLayout />,
     meta: {
       title: 'layout',
